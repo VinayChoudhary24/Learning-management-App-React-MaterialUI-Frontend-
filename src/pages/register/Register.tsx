@@ -245,10 +245,10 @@ export default function RegisterPage(): JSX.Element {
     //   setPhoneError("Please verify your mobile number.");
     //   return;
     // }
-    if (!emailVerified) {
-      setEmailError("Please verify your email account.");
-      return;
-    }
+    // if (!emailVerified) {
+    //   setEmailError("Please verify your email account.");
+    //   return;
+    // }
     // e.preventDefault();
     // dispatch(clearError());
     const { firstName, lastName, email, password } = data;
