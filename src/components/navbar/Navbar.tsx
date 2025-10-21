@@ -200,7 +200,12 @@ export default function Navbar() {
 
               {isUserLoggedIn ? (
                 <MenuItem>
-                  <Box display="flex" alignItems="center" gap={1}>
+                  <Box
+                    display="flex"
+                    alignItems="center"
+                    gap={1}
+                    onClick={handleProfileMenuOpen}
+                  >
                     <Avatar
                       src={userDetails?.profileImg?.url || undefined}
                       alt={
@@ -209,7 +214,6 @@ export default function Navbar() {
                         }`.trim() || "User"
                       }
                       sx={{ width: 30, height: 30 }}
-                      onClick={handleProfileMenuOpen}
                     >
                       {!userDetails?.profileImg?.url &&
                         getInitials(
