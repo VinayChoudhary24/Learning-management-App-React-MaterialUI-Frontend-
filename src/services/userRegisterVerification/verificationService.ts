@@ -24,7 +24,7 @@ export const sendOTP = async (
     return response;
   } catch (err) {
     const error = err as AxiosError<{ message?: string }>;
-    throw new Error(error.response?.data?.message || "Failed to send OTP");
+    throw new Error(error?.message || "Failed to send OTP");
   }
 };
 
@@ -45,6 +45,6 @@ export const verifyOTP = async (
     return response;
   } catch (err) {
     const error = err as AxiosError<{ message?: string }>;
-    throw new Error(error.response?.data?.message || "OTP verification failed");
+    throw new Error(error?.message || "OTP verification failed");
   }
 };

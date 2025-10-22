@@ -245,10 +245,10 @@ export default function RegisterPage(): JSX.Element {
     //   setPhoneError("Please verify your mobile number.");
     //   return;
     // }
-    if (!emailVerified) {
-      setEmailError("Please verify your email account.");
-      return;
-    }
+    // if (!emailVerified) {
+    //   setEmailError("Please verify your email account.");
+    //   return;
+    // }
     // e.preventDefault();
     // dispatch(clearError());
     const { firstName, lastName, email, password } = data;
@@ -274,7 +274,7 @@ export default function RegisterPage(): JSX.Element {
       navigate("/my-courses");
     } else if (registerWithEmailAsync.rejected.match(result)) {
       // console.log("result", result);
-      // console.log("result.payload", result.payload);
+      console.log("result.payload", result.payload);
       const message =
         (result.payload as string) ||
         "Register failed. Please check your credentials.";
@@ -588,6 +588,10 @@ export default function RegisterPage(): JSX.Element {
                     fullWidth
                     {...register("password", {
                       required: "Password is required",
+                      minLength: {
+                        value: 8,
+                        message: "Password must be at least 8 characters",
+                      },
                       pattern: {
                         value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])/,
                         message:

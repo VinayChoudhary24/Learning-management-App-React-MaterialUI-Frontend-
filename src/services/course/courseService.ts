@@ -34,7 +34,7 @@ export const getCourses = async (options?: {
     return response;
   } catch (err) {
     const error = err as AxiosError<{ message?: string }>;
-    throw new Error(error.response?.data?.message || "Failed to fetch courses");
+    throw new Error(error?.message || "Failed to fetch courses");
   }
 };
 
@@ -48,8 +48,6 @@ export const getCourseModules = async (
     return response;
   } catch (err) {
     const error = err as AxiosError<{ message?: string }>;
-    throw new Error(
-      error.response?.data?.message || "Failed to fetch course modules"
-    );
+    throw new Error(error?.message || "Failed to fetch course modules");
   }
 };

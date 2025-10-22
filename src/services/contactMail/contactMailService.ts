@@ -24,8 +24,6 @@ export const sendContactForm = async (
     return response;
   } catch (err) {
     const error = err as AxiosError<{ message?: string }>;
-    throw new Error(
-      error.response?.data?.message || "Failed to send contact form"
-    );
+    throw new Error(error?.message || "Failed to send contact form");
   }
 };

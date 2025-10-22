@@ -16,8 +16,6 @@ export const getCategories = async (options?: {
     return response;
   } catch (err) {
     const error = err as AxiosError<{ message?: string }>;
-    throw new Error(
-      error.response?.data?.message || "Failed to fetch categories"
-    );
+    throw new Error(error?.message || "Failed to fetch categories");
   }
 };

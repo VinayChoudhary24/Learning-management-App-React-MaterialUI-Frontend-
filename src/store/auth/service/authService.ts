@@ -30,9 +30,7 @@ export const registerWithEmail = async (
     return response;
   } catch (err) {
     const error = err as AxiosError<{ message?: string }>;
-    throw new Error(
-      error.response?.data?.message || "Registration failed. Please try again."
-    );
+    throw new Error(error?.message || "Registration failed. Please try again.");
   }
 };
 
@@ -49,9 +47,8 @@ export const loginWithEmail = async (
     return response;
   } catch (err) {
     const error = err as AxiosError<{ message?: string }>;
-    throw new Error(
-      error.response?.data?.message || "Login failed. Please try again."
-    );
+    console.log("Error in loginWithEmail:", error);
+    throw new Error(error?.message || "Login failed. Please try again.");
   }
 };
 
@@ -64,9 +61,7 @@ export const loginWithGoogle = async () => {
     // return response;
   } catch (err) {
     const error = err as AxiosError<{ message?: string }>;
-    throw new Error(
-      error.response?.data?.message || "Google login failed. Please try again."
-    );
+    throw new Error(error?.message || "Google login failed. Please try again.");
   }
 };
 
@@ -77,9 +72,7 @@ export const logout = async () => {
     return response;
   } catch (err) {
     const error = err as AxiosError<{ message?: string }>;
-    throw new Error(
-      error.response?.data?.message || "Logout failed. Please try again."
-    );
+    throw new Error(error?.message || "Logout failed. Please try again.");
   }
 };
 
@@ -91,7 +84,7 @@ export const verifyToken = async (): Promise<boolean> => {
     return response.success ?? false;
   } catch (err) {
     const error = err as AxiosError<{ message?: string }>;
-    console.error("Token verification failed:", error.response?.data?.message);
+    console.error("Token verification failed:", error?.message);
     return false;
   }
 };
@@ -105,10 +98,7 @@ export const verifyCourseAuth = async (id: string): Promise<boolean> => {
     return response.success ?? false;
   } catch (err) {
     const error = err as AxiosError<{ message?: string }>;
-    console.error(
-      "CourseAuth verification failed:",
-      error.response?.data?.message
-    );
+    console.error("CourseAuth verification failed:", error?.message);
     return false;
   }
 };
@@ -138,8 +128,7 @@ export const passwordResetLink = async (
   } catch (err) {
     const error = err as AxiosError<{ message?: string }>;
     throw new Error(
-      error.response?.data?.message ||
-        "Failed to send password reset link. Please try again."
+      error?.message || "Failed to send password reset link. Please try again."
     );
   }
 };
@@ -162,8 +151,7 @@ export const resetPassword = async (
   } catch (err) {
     const error = err as AxiosError<{ message?: string }>;
     throw new Error(
-      error.response?.data?.message ||
-        "Failed to send password reset link. Please try again."
+      error?.message || "Failed to send password reset link. Please try again."
     );
   }
 };

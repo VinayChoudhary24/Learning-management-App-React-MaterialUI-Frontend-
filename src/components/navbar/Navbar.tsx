@@ -225,12 +225,12 @@ export default function Navbar() {
                   </Box>
                 </MenuItem>
               ) : (
-                <>
+                <Box>
                   <MenuItem onClick={() => navigate("/login")}>Login</MenuItem>
-                  <MenuItem onClick={() => navigate("/signup")}>
+                  <MenuItem onClick={() => navigate("/register")}>
                     Signup
                   </MenuItem>
-                </>
+                </Box>
               )}
 
               <MenuItem>

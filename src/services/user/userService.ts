@@ -7,6 +7,6 @@ export const getUser = async (): Promise<OAuth2Response> => {
     return await api.get<unknown, OAuth2Response>("/user");
   } catch (err) {
     const error = err as AxiosError<{ message?: string }>;
-    throw new Error(error.response?.data?.message || "Failed to fetch user");
+    throw new Error(error?.message || "Failed to fetch user");
   }
 };

@@ -18,9 +18,7 @@ export const createEnrollment = async (
     return response;
   } catch (err) {
     const error = err as AxiosError<{ message?: string }>;
-    throw new Error(
-      error.response?.data?.message || "Failed to create enrollment"
-    );
+    throw new Error(error?.message || "Failed to create enrollment");
   }
 };
 
@@ -32,8 +30,6 @@ export const getEnrollments = async (): Promise<EnrollmentsDataResponse> => {
     return response;
   } catch (err) {
     const error = err as AxiosError<{ message?: string }>;
-    throw new Error(
-      error.response?.data?.message || "Failed to fetch Enrollments"
-    );
+    throw new Error(error?.message || "Failed to fetch Enrollments");
   }
 };

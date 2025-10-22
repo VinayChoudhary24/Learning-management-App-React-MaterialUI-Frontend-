@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import axios from "axios";
 import type {
   AxiosInstance,
@@ -41,14 +42,26 @@ api.interceptors.response.use(
     return response.data;
   },
   (error: AxiosError) => {
+    const errorResponse = {
+      success: false,
+      statusCode: 0,
+      message: "An unexpected error occurred",
+      details: null as any,
+    };
     if (error.response) {
-      const { status } = error.response;
+      const { status, data } = error.response;
+      const responseData = data as any;
+      errorResponse.statusCode = status;
+      errorResponse.details = responseData;
 
       switch (status) {
         case 400:
           console.error("Bad Request:", error.response.data);
+          errorResponse.message =
+            responseData?.message || "Bad Request. Please check your input.";
           break;
         case 401:
+          errorResponse.message = "Unauthorized. Please login again.";
           console.warn("Unauthorized. Redirecting to login...");
           clearAuth();
           // We check if 'window' is defined to ensure this code only runs in the browser.
@@ -62,24 +75,34 @@ api.interceptors.response.use(
           break;
         case 403:
           console.error("Forbidden:", error.response.data);
+          errorResponse.message =
+            "You do not have permission to perform this action.";
           break;
         case 404:
           console.error("Not Found:", error.response.data);
+          errorResponse.message = "Requested resource not found.";
           break;
         case 500:
           console.error("Server Error:", error.response.data);
+          errorResponse.message =
+            "Internal server error. Please try again later.";
           break;
         default:
           console.error("Unexpected Error:", error.response.data);
+          errorResponse.message =
+            responseData?.message || "Unexpected server error.";
       }
-      return Promise.reject(error.response.data);
+      return Promise.reject(errorResponse);
     } else if (error.request) {
       console.error("No response from server:", error.request);
+      errorResponse.message =
+        "No response from server. Please check your network connection.";
     } else {
       console.error("Request setup error:", error.message);
+      errorResponse.message = error.message || "Request configuration error.";
     }
 
-    return Promise.reject(error);
+    return Promise.reject(errorResponse);
   }
 );
 
