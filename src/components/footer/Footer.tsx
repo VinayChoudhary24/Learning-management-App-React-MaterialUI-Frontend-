@@ -66,7 +66,7 @@ export default function Footer() {
             </Typography>
             <Box display="flex" flexDirection="column" gap={1}>
               <Link
-                href="https://vinay-choudhary-portfolio-nextjs.vercel.app/"
+                href="https://vinay-choudhary.vercel.app/"
                 color="inherit"
                 underline="hover"
                 target="_blank"
