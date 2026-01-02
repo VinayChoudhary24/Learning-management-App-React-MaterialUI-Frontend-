@@ -5,6 +5,7 @@ import Footer from "../../components/footer/Footer";
 import loaderGif from "../../components/loader/d.gif";
 import { useAppSelector } from "../../store/hooks/react-redux/hook";
 import { selectIsLoading } from "../../store/loader/loaderSlice/loaderSlice";
+import ChatWidget from "../../components/defiChatWidget/DefiChatWidget";
 // import BreadcrumbsNav, {
 // type BreadcrumbItem,
 // } from "../../components/breadCrumbsNav/BreadCrumbsNav";
@@ -31,6 +32,9 @@ export default function RootLayout() {
 
       {/* Footer */}
       <Footer />
+
+      {/* Global Chat Widget */}
+      <ChatWidget />
 
       {/* Full-page loader overlay */}
       {isLoading && (
